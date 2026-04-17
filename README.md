@@ -157,3 +157,26 @@ jlc --version
 ```
 
 새 버전이 나오면 `jlc` 실행 시(최근 24시간 내 체크 안 했을 때) 알림이 뜹니다. 업데이트는 원라이너 설치를 다시 실행하면 됩니다.
+
+---
+
+## 관련 레포지토리
+
+jlc 3계층 스택:
+
+| 레포 | 공개 | 역할 |
+|------|------|------|
+| **[jlc-cli-releases](https://github.com/orderlycode/jlc-cli-releases)** (여기) | public | 일반 사용자 배포 채널. 바이너리·인스톨러·`install.sh`/`install.ps1`·이 메뉴얼. |
+| [jlc-cli](https://github.com/orderlycode/jlc-cli) | private | CLI 소스 코드 (Bun + TypeScript). |
+| [jlc-api](https://github.com/orderlycode/jlc-api) | private | 검색·가공 API (NestJS on Cloud Run). |
+| [easyeda2kicad-server](https://github.com/orderlycode/easyeda2kicad-server) | private | Python `easyeda2kicad` HTTP 래퍼 (FastAPI on Cloud Run). |
+
+```
+사용자 → jlc(CLI)
+           │
+           ▼
+        jlc-api  ──── pcb-dev.ocp.kr (RLC 검색)
+           │      ──── jlcpcb.com (부품 상세)
+           ▼
+  easyeda2kicad-server  ──── easyeda.com (심볼·풋프린트·3D)
+```
